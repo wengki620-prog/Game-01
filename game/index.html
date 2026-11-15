@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arus Lentera — Antar Cahaya ke Muara Emas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wadah">
+  <canvas id="layar" width="1280" height="720"></canvas>
+
+  <div id="hud" class="tersembunyi">
+    <div class="hud-kiri">
+      <div class="hud-skor"><span class="label">SKOR</span><span id="nilai-skor">0</span></div>
+      <div class="hud-terbaik">Terbaik: <span id="nilai-terbaik">0</span></div>
+    </div>
+    <div class="hud-tengah">
+      <div id="nama-tahap">Hulu Tenang</div>
+      <div id="batang-jarak">
+        <div id="isi-jarak"></div>
+        <i class="penanda" style="left:25%"></i>
+        <i class="penanda" style="left:50%"></i>
+        <i class="penanda" style="left:75%"></i>
+        <b id="ikon-perahu">▲</b>
+      </div>
+      <div id="teks-jarak">0 m / 3.000 m</div>
+    </div>
+    <div class="hud-kanan">
+      <div id="nyawa" aria-label="Lambung"></div>
+      <div id="batang-cahaya" title="Cahaya lentera"><div id="isi-cahaya"></div><span>LENTERA</span></div>
+      <div class="hud-tombol">
+        <button id="tombol-jeda" type="button" title="Jeda (P)">II</button>
+        <button id="tombol-suara" type="button" title="Suara (M)">♪</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="kombo" class="tersembunyi">KOMBO ×2</div>
+  <div id="spanduk-tahap" class="tersembunyi"></div>
+
+  <div id="layar-judul" class="layar">
+    <p class="lampu-judul">✦</p>
+    <h1>ARUS LENTERA</h1>
+    <p class="subjudul">Antar cahaya sampai ke Muara Emas</p>
+    <p class="cerita">Sungai malam sedang deras. Kemudikan perahu lenteramu sejauh
+      3.000 meter, hindari batu dan pusaran, dan kumpulkan kunang-kunang
+      agar cahayamu tidak padam sebelum fajar.</p>
+    <div class="panel-kontrol">
+      <div><b>← →</b> / <b>A D</b> belok &nbsp;•&nbsp; <b>↑ ↓</b> / <b>W S</b> kayuh</div>
+      <div><b>Mouse</b> mengarah &nbsp;•&nbsp; <b>Klik</b> dash &nbsp;•&nbsp; <b>P</b> jeda &nbsp;•&nbsp; <b>R</b> ulang &nbsp;•&nbsp; <b>M</b> suara</div>
+    </div>
+    <button id="tombol-mulai" class="tombol-besar" type="button">MULAI BERLAYAR</button>
+    <p class="skor-terbaik-judul">Skor terbaik: <span id="terbaik-judul">0</span></p>
+  </div>
+
+  <div id="layar-jeda" class="layar tersembunyi">
+    <h2>JEDA</h2>
+    <p class="subjudul">Perahu berlabuh sebentar. Arus menunggumu.</p>
+    <button id="tombol-lanjut" class="tombol-besar" type="button">LANJUTKAN</button>
+    <button id="tombol-ulang-jeda" class="tombol-kecil" type="button">Mulai dari awal (R)</button>
+  </div>
+
+  <div id="layar-menang" class="layar tersembunyi">
+    <p class="lampu-judul">☀</p>
+    <h2>MUARA EMAS TERCAPAI!</h2>
+    <p class="subjudul">Cahayamu sampai. Fajar menyambut di ujung sungai.</p>
+    <div class="panel-hasil">
+      <div><span>Skor akhir</span><b id="hasil-skor-menang">0</b></div>
+      <div><span>Kunang-kunang</span><b id="hasil-kunang-menang">0</b></div>
+      <div><span>Waktu</span><b id="hasil-waktu-menang">0:00</b></div>
+      <div><span>Bonus cahaya</span><b id="hasil-cahaya-menang">+0</b></div>
+    </div>
+    <p id="rekor-menang" class="rekor tersembunyi">★ Rekor baru! ★</p>
+    <button id="tombol-main-lagi-menang" class="tombol-besar" type="button">BERLAYAR LAGI</button>
+  </div>
+
+  <div id="layar-kalah" class="layar tersembunyi">
+    <p class="lampu-judul">⚓</p>
+    <h2>PERAHU KARAM…</h2>
+    <p class="subjudul">Lentera padam di tengah sungai. Coba lagi — arus sudah hafal jalanmu.</p>
+    <div class="panel-hasil">
+      <div><span>Skor akhir</span><b id="hasil-skor-kalah">0</b></div>
+      <div><span>Jarak tempuh</span><b id="hasil-jarak-kalah">0 m</b></div>
+      <div><span>Kunang-kunang</span><b id="hasil-kunang-kalah">0</b></div>
+      <div><span>Tahap terjauh</span><b id="hasil-tahap-kalah">Hulu Tenang</b></div>
+    </div>
+    <p id="rekor-kalah" class="rekor tersembunyi">★ Rekor baru! ★</p>
+    <button id="tombol-main-lagi-kalah" class="tombol-besar" type="button">COBA LAGI</button>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

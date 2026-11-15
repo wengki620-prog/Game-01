@@ -1,0 +1,254 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  background: #070b1a;
+  font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+  color: #f5eedd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#wadah {
+  position: relative;
+  width: min(100vw, 177.78vh);
+  aspect-ratio: 16 / 9;
+  background: #0b1230;
+  overflow: hidden;
+  user-select: none;
+}
+
+#layar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tersembunyi { display: none !important; }
+
+/* ---------- HUD ---------- */
+#hud {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 16px;
+  gap: 12px;
+  pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.hud-kiri { min-width: 170px; }
+.hud-skor { font-size: 30px; font-weight: 800; letter-spacing: 1px; line-height: 1; }
+.hud-skor .label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #ffd97a;
+}
+.hud-terbaik { margin-top: 4px; font-size: 13px; color: #cfe0ff; }
+
+.hud-tengah { flex: 1; max-width: 460px; text-align: center; }
+#nama-tahap {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffe9b0;
+  text-transform: uppercase;
+}
+#batang-jarak {
+  position: relative;
+  height: 10px;
+  margin: 6px 0 4px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  overflow: visible;
+}
+#isi-jarak {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ffb347, #ffe27a);
+  border-radius: 6px;
+}
+#batang-jarak .penanda {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.65);
+}
+#ikon-perahu {
+  position: absolute;
+  top: -16px;
+  left: 0%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #ffe27a;
+}
+#teks-jarak { font-size: 13px; color: #e8ecff; }
+
+.hud-kanan { min-width: 190px; text-align: right; }
+#nyawa { font-size: 22px; letter-spacing: 3px; line-height: 1; min-height: 24px; }
+#nyawa span { color: #ff6b7a; text-shadow: 0 0 8px rgba(255, 107, 122, 0.7); }
+#nyawa .kosong { opacity: 0.25; filter: grayscale(1); text-shadow: none; }
+#batang-cahaya {
+  position: relative;
+  height: 14px;
+  margin-top: 7px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+#isi-cahaya {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ff9d2e, #ffe27a);
+  border-radius: 8px;
+}
+#batang-cahaya span {
+  position: absolute;
+  inset: 0;
+  font-size: 9px;
+  letter-spacing: 3px;
+  line-height: 14px;
+  text-align: center;
+  color: #1a1206;
+  text-shadow: none;
+  font-weight: 800;
+}
+.hud-tombol { margin-top: 7px; pointer-events: auto; }
+.hud-tombol button {
+  width: 34px; height: 30px;
+  margin-left: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(10, 16, 40, 0.55);
+  color: #ffe9b0;
+  font-size: 14px;
+  cursor: pointer;
+}
+.hud-tombol button:hover { background: rgba(255, 179, 71, 0.35); }
+.hud-tombol button.mati { opacity: 0.45; text-decoration: line-through; }
+
+#kombo {
+  position: absolute;
+  top: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffe27a;
+  text-shadow: 0 0 14px rgba(255, 179, 71, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+#spanduk-tahap {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #fff3d0;
+  text-shadow: 0 0 22px rgba(255, 179, 71, 0.85), 0 3px 8px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ---------- Layar menu ---------- */
+.layar {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 38%, rgba(20, 30, 70, 0.42), rgba(5, 8, 22, 0.78));
+}
+
+.layar h1 {
+  font-size: 64px;
+  letter-spacing: 6px;
+  line-height: 1;
+  color: #ffe9b0;
+  text-shadow: 0 0 26px rgba(255, 179, 71, 0.75), 0 4px 10px rgba(0, 0, 0, 0.9);
+}
+.layar h2 {
+  font-size: 44px;
+  letter-spacing: 3px;
+  color: #ffe9b0;
+  text-shadow: 0 0 22px rgba(255, 179, 71, 0.7), 0 4px 10px rgba(0, 0, 0, 0.9);
+}
+.lampu-judul { font-size: 52px; line-height: 1; filter: drop-shadow(0 0 14px rgba(255, 179, 71, 0.8)); }
+.subjudul { font-size: 19px; color: #dfe7ff; letter-spacing: 1px; }
+.cerita { max-width: 560px; font-size: 16px; line-height: 1.5; color: #cdd6f5; }
+
+.panel-kontrol {
+  margin-top: 4px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 233, 176, 0.35);
+  border-radius: 12px;
+  background: rgba(8, 12, 32, 0.55);
+  font-size: 14px;
+  line-height: 1.9;
+  color: #e8ecff;
+}
+.panel-kontrol b { color: #ffd97a; }
+
+.tombol-besar {
+  margin-top: 8px;
+  padding: 14px 34px;
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #231303;
+  background: linear-gradient(180deg, #ffe27a, #ffab2e);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(255, 171, 46, 0.55), 0 4px 0 #a35c00;
+}
+.tombol-besar:hover { filter: brightness(1.08); }
+.tombol-besar:active { transform: translateY(3px); box-shadow: 0 0 18px rgba(255, 171, 46, 0.5), 0 1px 0 #a35c00; }
+
+.tombol-kecil {
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #ffe9b0;
+  background: transparent;
+  border: 1px solid rgba(255, 233, 176, 0.5);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.tombol-kecil:hover { background: rgba(255, 179, 71, 0.2); }
+
+.skor-terbaik-judul { font-size: 15px; color: #cfe0ff; }
+
+.panel-hasil {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(210px, 250px));
+  gap: 8px 26px;
+  margin: 4px 0;
+  padding: 14px 22px;
+  border: 1px solid rgba(255, 233, 176, 0.35);
+  border-radius: 14px;
+  background: rgba(8, 12, 32, 0.6);
+}
+.panel-hasil div { display: flex; justify-content: space-between; gap: 18px; font-size: 16px; white-space: nowrap; }
+.panel-hasil span { color: #cdd6f5; }
+.panel-hasil b { color: #ffe27a; font-size: 18px; }
+
+.rekor { font-size: 20px; font-weight: 800; color: #ffe27a; letter-spacing: 2px; }
